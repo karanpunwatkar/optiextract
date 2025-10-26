@@ -26,7 +26,7 @@
       formData.append('file', fileInput.files[0]);
 
       try {
-        const res = await fetch('http://127.0.0.1:8000/upload-document', {
+        const res = await fetch('https://optiextract.onrender.com/upload-document', {
           method: 'POST',
           body: formData
         });
