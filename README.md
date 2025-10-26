@@ -71,8 +71,9 @@ https://optiextract.onrender.com
 ```
 🌐 Deployment
 
+Frontend: Vercel → https://optiextract.vercel.app/upload.html
 Backend: Render → https://optiextract.onrender.com
-Frontend: Vercel → https://optiextract-frontend.vercel.app
+
 
 Make sure frontend fetch URLs point to the live backend.
 
