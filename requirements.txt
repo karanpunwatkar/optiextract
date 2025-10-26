@@ -1,1 +1,4 @@
-fastapi\nuvicorn\nsqlalchemy\npython-multipart
+fastapi
+uvicorn
+sqlalchemy
+python-multipart
