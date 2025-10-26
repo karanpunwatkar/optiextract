@@ -23,7 +23,7 @@
 
   <script>
     async function loadFiles() {
-      const res = await fetch('https://optiextract.onrender.com/upload-document');
+      const res = await fetch('https://optiextract.onrender.com/files');
       const files = await res.json();
       const tbody = document.querySelector('#filesTable tbody');
       tbody.innerHTML = '';
