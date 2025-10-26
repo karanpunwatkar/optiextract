@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload File - OptiExtract</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Upload a Document</h2>
+    <input type="file" id="fileInput" />
+    <button onclick="uploadFile()">Upload File</button>
+    <p id="status"></p>
+    <a href="files.html">View Upload History →</a>
+  </div>
+
+  <script>
+    async function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      if (!fileInput.files.length) {
+        alert('Please select a file first!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      try {
+        const res = await fetch('http://127.0.0.1:8000/upload-document', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        document.getElementById('status').textContent = data.message;
+        fileInput.value = ''; // reset input
+      } catch (err) {
+        document.getElementById('status').textContent = 'Upload failed!';
+      }
+    }
+  </script>
+</body>
+</html>

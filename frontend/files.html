@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>File History - OptiExtract</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Uploaded Files History</h2>
+    <table id="filesTable">
+      <thead>
+        <tr>
+          <th>Original Filename</th>
+          <th>Size (bytes)</th>
+          <th>Uploaded At</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <a href="upload.html">← Back to Upload</a>
+  </div>
+
+  <script>
+    async function loadFiles() {
+      const res = await fetch('http://127.0.0.1:8000/files');
+      const files = await res.json();
+      const tbody = document.querySelector('#filesTable tbody');
+      tbody.innerHTML = '';
+
+      if (files.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3">No files uploaded yet.</td></tr>';
+        return;
+      }
+
+      files.forEach(f => {
+        const row = `<tr>
+          <td>${f.original_filename}</td>
+          <td>${f.file_size_bytes}</td>
+          <td>${f.uploaded_at}</td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+    }
+    loadFiles();
+  </script>
+</body>
+</html>
